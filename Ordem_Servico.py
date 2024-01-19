@@ -4,6 +4,7 @@ import pandas as pd
 import calendar
 
 app = Dash(__name__)
+server - app.server
 
 # Assume you have a "long-form" data frame
 # See https://plotly.com/python/px-arguments/ for more options
