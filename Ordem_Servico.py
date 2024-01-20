@@ -5,6 +5,7 @@ import calendar
 
 app = Dash(__name__)
 
+
 # Assume you have a "long-form" data frame
 # See https://plotly.com/python/px-arguments/ for more options
 df = pd.read_excel("UT-020-PROJETOS.xlsx")
