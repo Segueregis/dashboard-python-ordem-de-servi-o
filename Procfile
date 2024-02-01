@@ -1,1 +1,1 @@
-web: gunicorn Ordem_Servico:Ordem_Servico
+web: gunicorn app:app
