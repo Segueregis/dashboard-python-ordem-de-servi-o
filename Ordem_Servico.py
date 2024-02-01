@@ -4,7 +4,7 @@ import pandas as pd
 import calendar
 
 app = Dash(__name__)
-server - app-server
+
 
 # Assume you have a "long-form" data frame
 # See https://plotly.com/python/px-arguments/ for more options
@@ -39,7 +39,7 @@ meses_referencia['Mes'] = meses_referencia.index.map(lambda x: calendar.month_ab
 
 app.layout = html.Div([
     # html, css
-    html.H1('Ordem de Serviço - UT - 020 Projetos', style={'color': 'orange', 'fontSize': 40} ),
+    html.H1('Ordem de Serviço - UT - 020 Projetos', style={'color': 'orange', 'fontSize': 40}),
 
     html.H2('Gráfico por Setores '),  # Gráfico Barras
     dcc.Dropdown(options=opcoes_anual, value='Lista por Setor', id='lista_Setor_bar'),
