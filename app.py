@@ -1,4 +1,4 @@
-from dash import Dash, html, dcc, Input, Output, State
+from dash import Dash, html, dcc, Input, Output
 import plotly.express as px
 import pandas as pd
 import calendar
@@ -37,9 +37,7 @@ app.layout = html.Div([
     dcc.Dropdown(options=opcoes_equipe, value='Lista por Equipe', id='lista_Equipe_pie'),
     dcc.Graph(id='grafico_por_equipe_pie', figure=fig_pie),
 
-    html.H2('Gráfico por Quantidade Anual '),
-    dcc.Dropdown(options=opcoes_anual, value='Lista por Setor', id='lista_Setor'),  # Corrigido para opcoes_anual
-    dcc.Graph(id='grafico_por_setor', figure=create_default_quantidade_figure())
+
 ])
 
 @app.callback(
@@ -66,19 +64,7 @@ def update_output_pie(value):
         fig = px.pie(tabela_filtrada, names='Equipe', values='Quantidade', title=f'Distribuição por Equipe - {value}')
     return fig
 
-@app.callback(
-    Output('grafico_por_setor', 'figure'),
-    Input('lista_Setor', 'value')
-)
-def update_output_quantidade(value):
-    if value == 'Lista por Setor':
-        fig = create_default_quantidade_figure()
-    else:
-        tabela_filtrada = df.loc[df['Setor'] == value, :]
-        fig = px.line(tabela_filtrada, x="DataInicio", y="Quantidade", color="Setor", title=f'Tendência Semanal de Ordens de Serviço - {value}')
-        fig.update_layout(xaxis=dict(type='category', categoryorder='array', categoryarray=meses_referencia['Mes']))
 
-    return fig
 
 if __name__ == '__main__':
     app.run_server(debug=True)
