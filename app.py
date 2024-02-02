@@ -6,7 +6,7 @@ import calendar
 
 app = dash.Dash(__name__)
 
-server - app.server
+
 
 df = pd.read_excel("UT-020-PROJETOS.xlsx")
 df = df.rename(columns={'Status': 'Status', 'Quantidade': 'Quantidade', 'Setor': 'Setor', 'Equipe': 'Equipe',
