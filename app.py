@@ -2,15 +2,14 @@ import dash
 from dash import html, dcc, Input, Output
 import plotly.express as px
 import pandas as pd
-import calendar
+
 
 app = dash.Dash(__name__)
 
 
 
 df = pd.read_excel("UT-020-PROJETOS.xlsx")
-df = df.rename(columns={'Status': 'Status', 'Quantidade': 'Quantidade', 'Setor': 'Setor', 'Equipe': 'Equipe',
-                        'Data de Inicio': 'DataInicio'})
+df = df.rename(columns={'Status': 'Status', 'Quantidade': 'Quantidade', 'Setor': 'Setor', 'Equipe': 'Equipe',})
 
 # Adicione os prints para verificar os tipos de dados e valores ausentes
 print(df.dtypes)
@@ -20,8 +19,6 @@ fig_bar = px.bar(df, x="Status", y="Quantidade", color="Setor", barmode="group")
 fig_pie = px.pie(df, names='Equipe', values='Quantidade', title='Distribuição por Equipe')
 
 
-def create_default_quantidade_figure():
-    return px.line(df, x="DataInicio", y="Quantidade", color="Setor", title='Tendência Semanal de Ordens de Serviço')
 
 
 def get_dropdown_options(column_name):
@@ -33,8 +30,7 @@ def get_dropdown_options(column_name):
 opcoes_setor = get_dropdown_options('Setor')
 opcoes_equipe = get_dropdown_options('Equipe')
 
-meses_referencia = pd.DataFrame(index=range(1, 13), columns=['Mes'])
-meses_referencia['Mes'] = meses_referencia.index.map(lambda x: calendar.month_abbr[x])
+
 
 app.layout = html.Div([
     html.H1('Ordem de Serviço - UT - 020 Projetos', style={'color': 'orange', 'fontSize': 40}),
